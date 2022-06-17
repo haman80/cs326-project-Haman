@@ -22,7 +22,7 @@ export class MovieBuddy {
 
     // Controsl for modifying watched list
     add_watched(movie){
-
+        console.log(movie);
     }
     del_watched(movie){
         
@@ -41,6 +41,6 @@ export class MovieBuddy {
     up_recom(movie){
 
     }
-    
+
   }
   
