@@ -48,6 +48,17 @@ export class MovieBuddy {
 
         //Render recom
         const recom_table = tables[2];
+        old_tbody = document.getElementById("recom_table_body");
+        new_tbody = document.createElement('tbody');
+        new_tbody.setAttribute('id', 'recom_table_body');
+        old_tbody.parentNode.replaceChild(new_tbody, old_tbody);   
+        for (const movie of this.recom){
+            let new_row = recom_table.getElementsByTagName('tbody')[0].insertRow();
+            let new_name = new_row.insertCell();
+            let new_year = new_row.insertCell();
+            new_name.appendChild(document.createTextNode(movie.name));
+            new_year.appendChild(document.createTextNode(movie.year));
+        }
 
     }
 
@@ -84,7 +95,7 @@ export class MovieBuddy {
         })
     }
     // Controsl for modifying recom list
-    up_recom(movie){
+    up_recom(){
 
     }
 
