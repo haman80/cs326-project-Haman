@@ -6,7 +6,7 @@ const watched_del_button = document.getElementById("delete-watched-button");
 const watched_up_button = document.getElementById("update-watched-movie");
 // Handling wish controls
 const wish_add_button = document.getElementById("add-wish-button");
-const wish_del_button = document.getElementById("delte-wish-button");
+const wish_del_button = document.getElementById("delete-wish-button");
 
 // Handling Recom controls
 const recom_add_button = document.getElementById("recom-button");
