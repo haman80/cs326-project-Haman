@@ -3,10 +3,10 @@ This remains the same as the first milestone.
 # Home Page
 ![Home Page](home_page.png)
 The image above shows what the application looks like. \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The users have access to three buttons in the navigation bar. \
-The home button which just redirects to the home page. \
-The help button which brings up a pop up window explaning how the appplication works.
-The sign in button which the user can use to sign into the application. \
+The users have access to three buttons in the navigation bar. \
+* The home button which just redirects to the home page. \
+* The help button which brings up a pop up window explaning how the appplication works. \
+* The sign in button which the user can use to sign into the application. \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Furthumroe, the application maintains three lists for each user. \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first list maintians the list of movies that the user has watched. \
 There are three controls provided to the user which they can use to modify the list. \
