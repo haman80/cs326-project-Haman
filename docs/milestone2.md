@@ -8,7 +8,7 @@ The home button which just redirects to the home page. \
 The help button which brings up a pop up window explaning how the appplication works.
 The sign in button which the user can use to sign into the application. \
 Furthumroe, the application maintains three lists for each user. \
-The first list maintians the list of movies that the user has watched.
+The first list maintians the list of movies that the user has watched. \
 There are three controls provided to the user which they can use to modify the list. \ 
 They could either add a new movie, delete a movie, or modify their rating of a previously added movie. \
 The second list maintians the list of movies that the user wishes to watch in the future.
