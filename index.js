@@ -27,11 +27,11 @@ watched_up_button.addEventListener("click", function(event){
 
 // Setting up event handlers for wish
 wish_add_button.addEventListener("click", function(event){
-    app.add_watched(document.getElementById("adding-wish-movie").value);
+    app.add_wish(document.getElementById("adding-wish-movie").value);
     app.render(document.getElementsByClassName("table"));
 });
 wish_del_button.addEventListener("click", function(event){
-    app.del_watched(document.getElementById("delete-wish-movie").value);
+    app.del_wish(document.getElementById("delete-wish-movie").value);
     app.render(document.getElementsByClassName("table"));
 });
 

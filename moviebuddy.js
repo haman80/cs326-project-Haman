@@ -19,8 +19,8 @@ export class MovieBuddy {
     render(tables) {
         //Render watched
         const watched_table = tables[0];
-        const old_tbody = document.getElementById("watched_table_body");
-        const new_tbody = document.createElement('tbody');
+        let old_tbody = document.getElementById("watched_table_body");
+        let new_tbody = document.createElement('tbody');
         new_tbody.setAttribute('id', 'watched_table_body');
         old_tbody.parentNode.replaceChild(new_tbody, old_tbody);   
         for (const movie of this.watched){
@@ -34,6 +34,17 @@ export class MovieBuddy {
         }
         //Render wish
         const wish_table = tables[1];
+        old_tbody = document.getElementById("wish_table_body");
+        new_tbody = document.createElement('tbody');
+        new_tbody.setAttribute('id', 'wish_table_body');
+        old_tbody.parentNode.replaceChild(new_tbody, old_tbody);   
+        for (const movie of this.wish){
+            let new_row = wish_table.getElementsByTagName('tbody')[0].insertRow();
+            let new_name = new_row.insertCell();
+            let new_year = new_row.insertCell();
+            new_name.appendChild(document.createTextNode(movie.name));
+            new_year.appendChild(document.createTextNode(movie.year));
+        }
 
         //Render recom
         const recom_table = tables[2];
