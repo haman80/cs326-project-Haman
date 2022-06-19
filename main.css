@@ -1,3 +1,66 @@
 span.important{
     font-size: 43px;
 }
+#watch-title{
+    background-color: navy;
+    color: white;
+    font-family: "Papyrus";
+    border: solid;
+    border-color: black;
+}
+#wish-title{
+    background-color: orange;
+    color: white;
+    font-family: "Papyrus";
+    border: solid;
+    border-color: black;
+
+}
+#recom-title{
+    background-color: crimson;
+    color: white;
+    font-family: "Papyrus";
+    border: solid;
+    border-color: black;
+}
+/* Buttons */
+#add-watched-button,#add-wish-button{
+    background-color: green;
+    color: white;
+    padding: 7px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+}
+#delete-watched-button, #delete-wish-button{
+    background-color: red;
+    color: white;
+    padding: 7px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+}
+#update-watched-button{
+    background-color: cyan;
+    color: black;
+    padding: 7px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+}
+#recom-button{
+    background-color: yellow;
+    color: black;
+    padding: 7px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+}
+.table{
+    border: solid;
+    border-color: black;
+}
+.row .col{
+    border: solid;
+    border-color: black;
+}
