@@ -18,3 +18,6 @@ There are two controls provided to the user which they can use to modify the lis
 They could either add a new movie or delete a movie.
 * The third list maintians the list of movies that the applicationsrecommends to the user based on his/her ratings of the watched movies. There is one control provided to the user which they can use to modify the list.
 They could click the recommend button to get updated recommendations.
+
+# Link of Video Showing the Application Running
+[This is the link to the video. ](https://www.loom.com/share/104d25556d0a4e4eabc1241eb32d4226)
