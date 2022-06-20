@@ -20,4 +20,4 @@ They could either add a new movie or delete a movie.
 They could click the recommend button to get updated recommendations.
 
 # Link of Video Showing the Application Running
-[This is the link to the video. ](https://www.loom.com/share/104d25556d0a4e4eabc1241eb32d4226)
+[Demonstration Video](https://www.loom.com/share/104d25556d0a4e4eabc1241eb32d4226)
