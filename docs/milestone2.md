@@ -1,7 +1,7 @@
 # Data Interactions
 This remains the same as the first milestone.
 # Home Page
-![Home Page](home_page.png)
+![Home Page](homepage.png)
 The image above shows what the application looks like.
 
 The users have access to three buttons in the navigation bar.
