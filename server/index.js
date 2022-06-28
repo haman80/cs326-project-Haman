@@ -56,7 +56,8 @@ app.delete('/deleteWish', async (req, res) => {
 //Handling the recommend list
 // Implement the /recom endpoint
 app.get('/recom', async (req, res) => {
-    res.status(200);
+    const my_data = await database.recom();
+    res.status(200).json(my_data);
 });
 
 
