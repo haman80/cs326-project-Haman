@@ -1,19 +1,9 @@
-export class MovieBuddy {
+class MovieBuddy {
     constructor() {
       // Initialize the bag.
       this.watched = [];
       this.wish = [];
       this.recom = [];
-    }
-   
-    _saveState() {
-    }
-  
-    _restoreState() {
-
-    }
-    _clearState() {
-      
     }
   
     render(tables) {
@@ -63,41 +53,100 @@ export class MovieBuddy {
     }
 
     // Controsl for modifying watched list
-    add_watched(movie){
-        const info = movie.split(",");
-        this.watched.push({name:info[0] , year:info[1] , rating:info[2] });
-        console.log(this.watched);
+    async addWatchList(name, year, rating) {
+        const my_data = {name,year,rating};
+        this.watched.push(my_data);
+        await fetch(`/addWatched`, {
+          method: 'POST',
+          body: JSON.stringify(my_data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
     }
-    del_watched(name){
-        this.watched = this.watched.filter((elem) => {
-            if (elem.name==name){ return false;}
-            else{ return true;}
-        })
-    }
-    up_watched(movie){
-        const info = movie.split(",");
-        this.watched.forEach((elem) => {
-            if (elem.name==info[0]){ 
-                elem.rating = info[1];
+    async delWatchList(name, year) {
+        const my_data = {name: name,year: year,rating: undefined};
+        //Removing from array
+        let index = null;
+        this.watched.forEach((elem, i)=> {
+            if (elem.name === name && elem.year === year){
+                index = i;
             }
         });
-  
+        this.watched.splice(index,1);;
+        //Send fetch request
+        await fetch(`/deleteWatched`, {
+          method: 'DELETE',
+          body: JSON.stringify(my_data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
     }
-    // Controsl for modifying wish list
-    add_wish(movie){
-        const info = movie.split(",");
-        this.wish.push({name:info[0] , year:info[1] , rating:undefined });
+    async updateWatchList(name, year, rating) {
+        //Updating element in array
+        const my_data = {name,year,rating};
+        let index = null;
+        this.watched.forEach((elem, i)=> {
+            if (elem.name === name && elem.year === year){
+                index = i;
+            }
+        });
+        this.watched.splice(index,1);;
+        this.watched.push(my_data);
+        // Sending fetch request
+        await fetch(`/updateWatched`, {
+          method: 'POST',
+          body: JSON.stringify(my_data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
     }
-    del_wish(name){
-        this.wish = this.wish.filter((elem) => {
-            if (elem.name==name){ return false;}
-            else{ return true;}
-        })
+
+    // Controsl for modifying Wish list
+    async addWishList(name, year, rating) {
+        const my_data = {name,year,rating};
+        this.wish.push(my_data);
+        await fetch(`/addWish`, {
+          method: 'POST',
+          body: JSON.stringify(my_data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
+    }
+    async delWishList(name, year) {
+        const my_data = {name: name,year: year};
+        //Removing from array
+        let index = null;
+        this.wish.forEach((elem, i)=> {
+            if (elem.name === name && elem.year === year){
+                index = i;
+            }
+        });
+        this.wish.splice(index,1);;
+        //Send fetch request
+        await fetch(`/deleteWish`, {
+          method: 'DELETE',
+          body: JSON.stringify(my_data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
     }
     // Controsl for modifying recom list
-    up_recom(){
-
+    async recom(){
+        //Send fetch request
+        const response = await fetch(`/recom`, {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
+        const my_data = await response.json();
     }
 
   }
   
+  export const movieBuddy = new MovieBuddy();
