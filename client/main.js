@@ -1,8 +1,10 @@
 import { movieBuddy } from "./moviebuddy.js";
-
+//Restore and render the lists
+await movieBuddy.restore();
+movieBuddy.render(document.getElementsByClassName("table"));
 //Helper function
 function parse_movie(movie){
-    let info = movie.split(",");
+    let info = movie.split(/[, ]+/);
     return info;
 }
 
@@ -42,6 +44,7 @@ wish_add_button.addEventListener("click", async function(event){
 });
 wish_del_button.addEventListener("click", async function(event){
     const info = parse_movie(document.getElementById("delete-wish-movie").value);
+    console.log(info[0], info[1]);
     await movieBuddy.delWishList(info[0],info[1]);
     movieBuddy.render(document.getElementsByClassName("table"));
 });
@@ -52,4 +55,3 @@ recom_add_button.addEventListener('click', async () => {
     await movieBuddy.recom();
     movieBuddy.render(document.getElementsByClassName("table"));
   });
-  

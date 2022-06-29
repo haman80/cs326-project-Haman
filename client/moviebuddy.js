@@ -5,6 +5,10 @@ class MovieBuddy {
       this.wish = [];
       this.recom = [];
     }
+    async restore(){
+        this.watched = await this.readWatchList();
+        this.wish = await this.readWishList();
+    }
   
     render(tables) {
         //Render watched
@@ -103,6 +107,17 @@ class MovieBuddy {
           },
         });
     }
+    async readWatchList(){
+        //Send fetch request
+        const response = await fetch(`/readWatched`, {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        });
+        const my_data = await response.json();
+        return my_data;
+    }
 
     // Controsl for modifying Wish list
     async addWishList(name, year, rating) {
@@ -135,18 +150,18 @@ class MovieBuddy {
           },
         });
     }
-    // Controsl for modifying recom list
-    async recom(){
+    async readWishList(){
         //Send fetch request
-        const response = await fetch(`/recom`, {
+        const response = await fetch(`/readWish`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
         });
         const my_data = await response.json();
-        //Modify the recom list now 
+        return my_data;
     }
+    
 
   }
   

@@ -26,7 +26,7 @@ export class Database {
     const queryText = `
       create table if not exists watchedList (
         name varchar(30) ,
-        year varchar(30),
+        year integer,
         rating float
       );
 
@@ -54,7 +54,7 @@ export class Database {
 
   async delWatchList(name, year) {
     const queryText =
-      'DELETE FROM watchedList WHERE name=$1 AND year=$2;';
+      'DELETE FROM watchedList WHERE name=$1 AND year::text=$2;';
     const res = await this.client.query(queryText, [name, year]);
     return res.rows;
   }
@@ -83,7 +83,7 @@ export class Database {
 
   async delWishList(name, year) {
     const queryText =
-      'DELETE FROM wishList WHERE name=$1 AND year=$2;';
+      'DELETE FROM wishList WHERE name=$1 AND year::text=$2;';
     const res = await this.client.query(queryText, [name, year]);
     return res.rows;
   }
