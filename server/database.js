@@ -66,6 +66,13 @@ export class Database {
     return res.rows;
   }
 
+  async readWatchList() {
+    const queryText =
+      'SELECT * FROM watchedList;';
+    const res = await this.client.query(queryText);
+    return res.rows;
+  }
+
   //Handling Wish List
   async addWishList(name, year) {
     const queryText =
@@ -81,10 +88,9 @@ export class Database {
     return res.rows;
   }
 
-  //Handling recom List
-  async recom() {
+  async readWishList() {
     const queryText =
-      'SELECT * FROM watchedList;';
+      'SELECT * FROM wishList;';
     const res = await this.client.query(queryText);
     return res.rows;
   }

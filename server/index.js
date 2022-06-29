@@ -38,6 +38,12 @@ app.post('/updateWatched', async (req, res) => {
   res.status(200).json({"status": "success"});
 });
 
+// Implement the /readWatched endpoint
+app.get('/readWatched', async (req, res) => {
+  const my_data = await database.readWatchList();
+  res.status(200).json(my_data);
+});
+
 //Handling the Wish List
 // Implement the /addWish endpoint
 app.post('/addWish', async (req, res) => {
@@ -53,11 +59,10 @@ app.delete('/deleteWish', async (req, res) => {
     res.status(200).json({"status": "success"});
 });
 
-//Handling the recommend list
-// Implement the /recom endpoint
-app.get('/recom', async (req, res) => {
-    const my_data = await database.recom();
-    res.status(200).json(my_data);
+// Implement the /readWish endpoint
+app.get('/readWish', async (req, res) => {
+  const my_data = await database.readWishList();
+  res.status(200).json(my_data);
 });
 
 
