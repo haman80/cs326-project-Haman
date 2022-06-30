@@ -27,13 +27,16 @@ export class Database {
       create table if not exists watchedList (
         name varchar(30) ,
         year integer,
-        rating float
+        rating float, 
+        userID varchar(30)
       );
 
       create table if not exists wishList (
         name varchar(30),
-        year integer
+        year integer,
+        userID varchar(30)
       );
+      
     `;
     const res = await this.client.query(queryText);
   }
@@ -45,53 +48,53 @@ export class Database {
   }
 
   //Handling the Watch List
-  async addWatchList(name, year, rating) {
+  async addWatchList(name, year, rating, userID) {
     const queryText =
-      'INSERT INTO watchedList (name, year, rating) VALUES ($1, $2, $3) RETURNING *';
-    const res = await this.client.query(queryText, [name, year, rating]);
+      'INSERT INTO watchedList (name, year, rating, userID) VALUES ($1, $2, $3, $4) RETURNING *';
+    const res = await this.client.query(queryText, [name, year, rating , userID]);
     return res.rows;
   }
 
-  async delWatchList(name, year) {
+  async delWatchList(name, year, userID) {
     const queryText =
-      'DELETE FROM watchedList WHERE name=$1 AND year::text=$2;';
-    const res = await this.client.query(queryText, [name, year]);
+      'DELETE FROM watchedList WHERE userID = $1 AND name=$2 AND year::text=$3;';
+    const res = await this.client.query(queryText, [userID, name, year]);
     return res.rows;
   }
 
-  async updateWatchList(name, year, rating) {
+  async updateWatchList(name, year, rating, userID) {
     const queryText =
-      'UPDATE watchedList SET rating = $1 WHERE name=$2 AND year=$3;';
-    const res = await this.client.query(queryText, [rating, name, year]);
+      'UPDATE watchedList SET rating = $1 WHERE userID =$2 AND name=$3 AND year::text=$4;';
+    const res = await this.client.query(queryText, [rating, userID, name, year]);
     return res.rows;
   }
 
-  async readWatchList() {
+  async readWatchList(userID) {
     const queryText =
-      'SELECT * FROM watchedList;';
-    const res = await this.client.query(queryText);
+      'SELECT * FROM watchedList WHERE userID = $1;';
+    const res = await this.client.query(queryText, [userID]);
     return res.rows;
   }
 
   //Handling Wish List
-  async addWishList(name, year) {
+  async addWishList(name, year, userID) {
     const queryText =
-      'INSERT INTO wishList (name, year) VALUES ($1, $2) RETURNING *';
-    const res = await this.client.query(queryText, [name, year]);
+      'INSERT INTO wishList (name, year, userID) VALUES ($1, $2, $3) RETURNING *';
+    const res = await this.client.query(queryText, [name, year, userID]);
     return res.rows;
   }
 
-  async delWishList(name, year) {
+  async delWishList(name, year, userID) {
     const queryText =
-      'DELETE FROM wishList WHERE name=$1 AND year::text=$2;';
-    const res = await this.client.query(queryText, [name, year]);
+      'DELETE FROM wishList WHERE name=$1 AND userID = $2 AND year::text=$3;';
+    const res = await this.client.query(queryText, [name, userID, year]);
     return res.rows;
   }
 
-  async readWishList() {
+  async readWishList(userID) {
     const queryText =
-      'SELECT * FROM wishList;';
-    const res = await this.client.query(queryText);
+      'SELECT * FROM wishList WHERE userID = $1;';
+    const res = await this.client.query(queryText, [userID]);
     return res.rows;
   }
   

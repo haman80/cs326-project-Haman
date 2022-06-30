@@ -1,13 +1,15 @@
 class MovieBuddy {
     constructor() {
-      // Initialize the bag.
+      this.user = null;
       this.watched = [];
       this.wish = [];
       this.recom = [];
+      
     }
     async restore(){
-        this.watched = await this.readWatchList();
-        this.wish = await this.readWishList();
+      this.user = await this.getCurrentUser();
+      this.watched = await this.readWatchList();
+      this.wish = await this.readWishList();
     }
   
     render(tables) {
@@ -58,7 +60,7 @@ class MovieBuddy {
 
     // Controsl for modifying watched list
     async addWatchList(name, year, rating) {
-        const my_data = {name,year,rating};
+        const my_data = {name,year,rating, userID: this.user};
         this.watched.push(my_data);
         await fetch(`/addWatched`, {
           method: 'POST',
@@ -69,7 +71,7 @@ class MovieBuddy {
         });
     }
     async delWatchList(name, year) {
-        const my_data = {name: name,year: year,rating: undefined};
+        const my_data = {name: name,year: year,rating: undefined,userID: this.user};
         //Removing from array
         let index = null;
         this.watched.forEach((elem, i)=> {
@@ -89,7 +91,7 @@ class MovieBuddy {
     }
     async updateWatchList(name, year, rating) {
         //Updating element in array
-        const my_data = {name,year,rating};
+        const my_data = {name,year,rating, userID: this.user};
         let index = null;
         this.watched.forEach((elem, i)=> {
             if (elem.name === name && elem.year === year){
@@ -113,7 +115,7 @@ class MovieBuddy {
           method: 'GET',
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
-          },
+          }
         });
         const my_data = await response.json();
         return my_data;
@@ -121,7 +123,7 @@ class MovieBuddy {
 
     // Controsl for modifying Wish list
     async addWishList(name, year, rating) {
-        const my_data = {name,year,rating};
+        const my_data = {name,year,rating,userID: this.user};
         this.wish.push(my_data);
         await fetch(`/addWish`, {
           method: 'POST',
@@ -132,7 +134,7 @@ class MovieBuddy {
         });
     }
     async delWishList(name, year) {
-        const my_data = {name: name,year: year};
+        const my_data = {name: name,year: year, userID: this.user};
         //Removing from array
         let index = null;
         this.wish.forEach((elem, i)=> {
@@ -161,7 +163,22 @@ class MovieBuddy {
         const my_data = await response.json();
         return my_data;
     }
-    
+    async recom(){
+      const my_data = await this.readWatchList();
+      //Modify this.recom
+      this.recom = [];
+      
+    }
+    async getCurrentUser(){
+      const response = await fetch(`/getUser`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const my_data = await response.json();
+      return my_data;
+    }
 
   }
   
