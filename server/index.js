@@ -128,55 +128,55 @@ app.get(
 );
 
 
-app.get('/getUser', async (req, res) => {
+app.get('/getUser', checkLoggedIn, async (req, res) => {
   res.status(200).json(currentUser);
 });
 
 //Handling the Watched List
 // Implement the /addWatched endpoint
-app.post('/addWatched', async (req, res) => {
+app.post('/addWatched', checkLoggedIn, async (req, res) => {
   const my_data = req.body;
   await database.addWatchList(my_data.name, my_data.year, my_data.rating, my_data.userID);
   res.status(200).json({"status": "success"});
 });
 
 // Implement the /deleteWatched endpoint
-app.delete('/deleteWatched', async (req, res) => {
+app.delete('/deleteWatched', checkLoggedIn, async (req, res) => {
     const my_data = req.body;
     await database.delWatchList(my_data.name, my_data.year, my_data.userID);
     res.status(200).json({"status": "success"});
 });
 
 // Implement the /updateWatched endpoint
-app.post('/updateWatched', async (req, res) => {
+app.post('/updateWatched', checkLoggedIn, async (req, res) => {
   const my_data = req.body;
   await database.updateWatchList(my_data.name, my_data.year, my_data.rating, my_data.userID);
   res.status(200).json({"status": "success"});
 });
 
 // Implement the /readWatched endpoint
-app.get('/readWatched', async (req, res) => {
+app.get('/readWatched', checkLoggedIn, async (req, res) => {
   const my_data = await database.readWatchList(currentUser);
   res.status(200).json(my_data);
 });
 
 //Handling the Wish List
 // Implement the /addWish endpoint
-app.post('/addWish', async (req, res) => {
+app.post('/addWish', checkLoggedIn, async (req, res) => {
     const my_data = req.body;
     await database.addWishList(my_data.name, my_data.year, my_data.userID);
     res.status(200).json({"status": "success"});
   });
   
 // Implement the /deleteWish endpoint
-app.delete('/deleteWish', async (req, res) => {
+app.delete('/deleteWish', checkLoggedIn, async (req, res) => {
     const my_data = req.body;
     await database.delWishList(my_data.name, my_data.year, my_data.userID);
     res.status(200).json({"status": "success"});
 });
 
 // Implement the /readWish endpoint
-app.get('/readWish', async (req, res) => {
+app.get('/readWish', checkLoggedIn, async (req, res) => {
   const my_data = await database.readWishList(currentUser);
   res.status(200).json(my_data);
 });
