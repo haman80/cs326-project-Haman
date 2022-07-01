@@ -52,7 +52,6 @@ wish_del_button.addEventListener("click", async function(event){
 
 // Setting up event handlers for recom
 recom_add_button.addEventListener('click', async () => {
-    // await movieBuddy.recom();
-    await movieBuddy.recomlist(550);
+    await movieBuddy.recom();
     movieBuddy.render(document.getElementsByClassName("table"));
   });

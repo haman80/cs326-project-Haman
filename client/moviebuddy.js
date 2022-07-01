@@ -168,13 +168,27 @@ class MovieBuddy {
       const my_url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=7495dc507c163252ad3dd25d443d4f0d&language=en-US&page=1`;
       const response = await fetch(my_url);
       const data = await response.json();
-      console.log(data);
+      let final_list = [];
+      data.results.forEach((elem)=>{
+        final_list.push({name:elem.original_title, year: elem.release_date.split("-")[0]});
+      });
+      console.log(final_list);
+      return final_list;
+    }
+    async get_movie_id(movie){
+      const name = movie.name;
+      const my_url = `https://api.themoviedb.org/3/search/movie?api_key=7495dc507c163252ad3dd25d443d4f0d&query=${name}&page=1`;
+      const response = await fetch(my_url);
+      const data = await response.json();
+      return data.results[0].id;
     }
     async recom(){
-      const my_data = await this.recomlist(550);
-      //Modify this.recom
-      this.recom = [];
-      return my_data;
+      if (this.watched.length>0){
+        const randomMovie = this.watched[Math.floor(Math.random() * this.watched.length)];
+        const id = await this.get_movie_id(randomMovie);
+        //Modify this.recom
+        this.recom = await recomlist(id);
+      }
     }
     async getCurrentUser(){
       const response = await fetch(`/getUser`, {
