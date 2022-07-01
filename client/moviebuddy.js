@@ -163,11 +163,18 @@ class MovieBuddy {
         const my_data = await response.json();
         return my_data;
     }
+    async recomlist(movie_id){
+      const id = movie_id.toString();
+      const my_url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=7495dc507c163252ad3dd25d443d4f0d&language=en-US&page=1`;
+      const response = await fetch(my_url);
+      const data = await response.json();
+      console.log(data);
+    }
     async recom(){
-      const my_data = await this.readWatchList();
+      const my_data = await this.recomlist(550);
       //Modify this.recom
       this.recom = [];
-      
+      return my_data;
     }
     async getCurrentUser(){
       const response = await fetch(`/getUser`, {
