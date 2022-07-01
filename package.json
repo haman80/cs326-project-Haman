@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
       "start": "node server/index.js",
-      "deploy": "copyfiles client/* server/* .env package*.json deploy"
+      "deploy": "copyfiles client/login/* deploy && copyfiles client/* deploy && copyfiles server/* .env package*.json deploy"
     },
     "author": "Haman Bagherianlemraski",
     "license": "ISC",
