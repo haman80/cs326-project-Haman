@@ -182,7 +182,7 @@ class MovieBuddy {
       const data = await response.json();
       return data.results[0].id;
     }
-    async recom(){
+    async update_recom(){
       if (this.watched.length>0){
         const randomMovie = this.watched[Math.floor(Math.random() * this.watched.length)];
         const id = await this.get_movie_id(randomMovie);
