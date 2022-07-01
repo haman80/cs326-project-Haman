@@ -172,7 +172,7 @@ class MovieBuddy {
       data.results.forEach((elem)=>{
         final_list.push({name:elem.original_title, year: elem.release_date.split("-")[0]});
       });
-      console.log(final_list);
+      final_list = final_list.slice(0, 10);
       return final_list;
     }
     async get_movie_id(movie){
@@ -187,7 +187,7 @@ class MovieBuddy {
         const randomMovie = this.watched[Math.floor(Math.random() * this.watched.length)];
         const id = await this.get_movie_id(randomMovie);
         //Modify this.recom
-        this.recom = await recomlist(id);
+        this.recom = await this.recomlist(id);
       }
     }
     async getCurrentUser(){
